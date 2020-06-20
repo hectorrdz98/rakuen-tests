@@ -1,3 +1,5 @@
 module.exports = {
-  Ping: require('./userCommands/ping'),
+    Di: require('./userCommands/di'),
+    Dir: require('./userCommands/dir'),
+    Saluda: require('./userCommands/saluda'),
 };
