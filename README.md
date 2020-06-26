@@ -12,4 +12,4 @@ This is just a testing bot for my main Discord bot "**Rakuen World**".
 1. Clone repo
 2. Run `npm install`
 3. Add Discord credentials in a `.env` file
-3. Run `node index.js
+3. Run `node index.js`
