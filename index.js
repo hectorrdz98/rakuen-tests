@@ -21,7 +21,7 @@ bot.on('message', msg => {
     if (!msg.content.startsWith(prefix) || msg.author.bot) return;
 
     const args = msg.content.slice(prefix.length).split(' ');
-    const command = args.shift().toLowerCase();
+    const command = args.shift();
     console.info(`Called command: ${command}`);
     
     if (!bot.commands.has(command)) return;
