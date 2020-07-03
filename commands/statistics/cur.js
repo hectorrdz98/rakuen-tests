@@ -27,7 +27,5 @@ module.exports = {
         });
 
         db.close();
-
-        
     },
 };
