@@ -12,6 +12,7 @@ Object.keys(botCommands).map(key => {
 const TOKEN = process.env.TOKEN;
 const PREFIX = process.env.PREFIX + ' ';
 const tacoUrl = 'https://media.discordapp.net/attachments/397031754063675402/601989148089253889/coin_discord.png'
+let tacoProb = 3;
 
 bot.login(TOKEN);
 
@@ -21,13 +22,13 @@ bot.on('ready', () => {
 
 bot.on('message', msg => {
     // Generate taco
-    if (!msg.author.bot && !msg.content.startsWith(PREFIX) && Math.floor(Math.random() * 100) + 1 <= 3) {
+    if (!msg.author.bot && !msg.content.startsWith(PREFIX) && Math.floor(Math.random() * 100) + 1 <= tacoProb) {
         tacoCommands.getTacoSpawn(msg.guild.id, msg.channel.id, function (data) {
             if (!data) {
                 msg.channel.send({embed: {
                     color: 3447003,
                     title: "¡Apareció un Taco! :taco:",
-                    description: "Usa `rt taco` para ganárselo a los demás",
+                    description: "Usa `" + PREFIX + "taco` para ganárselo a los demás",
                     image: {url: tacoUrl}
                   }
                 }).then(message => {
