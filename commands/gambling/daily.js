@@ -1,4 +1,3 @@
-const sqlite3 = require('sqlite3').verbose();
 const tacoCommands = require('./../../database/tacoCommands.js');
 const userCommands = require('./../../database/userCommands.js');
 let dailyTacos = 30;
@@ -18,7 +17,7 @@ module.exports = {
                         msg.channel.send(`¡Has recibido 30 Tacos :taco: <@${msg.author.id}>!`);
                     });
                 } else {
-                    lastDate.setHours(lastDate.getHours() + 1);
+                    lastDate.setHours(lastDate.getHours() + 24);
                     let diff = parseInt((lastDate.valueOf() - Date.now()) / 1000);
                     let hours = parseInt(diff / 3600);
                     let minutes = parseInt((diff % 3600) / 60);

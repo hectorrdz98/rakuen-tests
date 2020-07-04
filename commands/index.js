@@ -8,4 +8,5 @@ module.exports = {
     Saluda: require('./random/saluda'),
     
     Cur: require('./statistics/cur'),
+    Top: require('./statistics/top'),
 };

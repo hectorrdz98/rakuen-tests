@@ -25,6 +25,25 @@ module.exports = {
             });
         });
     },
+    getTopCur: function (callback) {
+        let db = new sqlite3.Database('./rakuenMain.db');
+        var data = [];
+        db.serialize(function() {
+            db.each(`
+                SELECT u.name AS username, t.tacos AS tacos
+                    FROM users_cur t
+                 INNER JOIN users u ON
+                  u.id = t.user_id
+                ORDER BY t.tacos DESC
+                 LIMIT 10
+            `, function(err, row) {
+                data.push(row);
+            }, function () {
+                db.close();
+                callback(data); 
+            });
+        });
+    },
     insertDaily: function (user_id, timestamp) {
         let db = new sqlite3.Database('./rakuenMain.db');
         let data = [user_id, timestamp];
