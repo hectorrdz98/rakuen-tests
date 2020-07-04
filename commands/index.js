@@ -9,4 +9,6 @@ module.exports = {
     
     Cur: require('./statistics/cur'),
     Top: require('./statistics/top'),
+
+    Profile: require('./user/profile'),
 };

@@ -4,8 +4,8 @@ module.exports = {
     name: 'top',
     description: 'Ver top de tacos!',
     execute(msg, args) {
-        tacoCommands.getTopCur(function (cur) {
-            if (!cur) {
+        tacoCommands.getTopCur(function (data) {
+            if (!data) {
                 msg.channel.send(`¡Lo siento, no hay top aún!`);
             } else {
                 let top = {
@@ -16,7 +16,7 @@ module.exports = {
                     timestamp: new Date(),
                 }
                 let count = 1;
-                cur.forEach(field => {
+                data.forEach(field => {
                     let icon = ''
                     switch (count) {
                         case 1:
