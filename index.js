@@ -23,18 +23,22 @@ bot.on('ready', () => {
 bot.on('message', msg => {
     // Generate taco
     if (!msg.author.bot && !msg.content.startsWith(PREFIX) && Math.floor(Math.random() * 100) + 1 <= tacoProb) {
-        tacoCommands.getTacoSpawn(msg.guild.id, msg.channel.id, function (data) {
-            if (!data) {
-                msg.channel.send({embed: {
-                    color: 3447003,
-                    title: "¡Apareció un Taco! :taco:",
-                    description: "Usa `" + PREFIX + "taco` para ganárselo a los demás",
-                    image: {url: tacoUrl}
-                  }
-                }).then(message => {
-                    tacoCommands.insertTacoSpawn(msg.guild.id, msg.channel.id, message.id);
+        tacoCommands.getSpawnableChannelsGuilds(msg.guild.id, msg.channel.id, function (status) {
+            if (status) {
+                tacoCommands.getTacoSpawn(msg.guild.id, msg.channel.id, function (data) {
+                    if (!data) {
+                        msg.channel.send({embed: {
+                            color: 3447003,
+                            title: "¡Apareció un Taco! :taco:",
+                            description: "Usa `" + PREFIX + "taco` para ganárselo a los demás",
+                            image: {url: tacoUrl}
+                          }
+                        }).then(message => {
+                            tacoCommands.insertTacoSpawn(msg.guild.id, msg.channel.id, message.id);
+                        });
+                        console.log(`Apareció un taco en el servidor ${msg.guild.name} en el canal ${msg.channel.name}`);
+                    }
                 });
-                console.log(`Apareció un taco en el servidor ${msg.guild.name} en el canal ${msg.channel.name}`);
             }
         });
     }

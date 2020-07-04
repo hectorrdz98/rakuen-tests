@@ -56,6 +56,18 @@ module.exports = {
             });
         });
     },
+    getSpawnableChannelsGuilds: function (guild, channel, callback) {
+        let db = new sqlite3.Database('./rakuenMain.db');
+        var data = [];
+        db.serialize(function() {
+            db.each("SELECT * FROM spawnable_channels_guilds WHERE guild = " + guild + " AND channel = " + channel , function(err, row) {
+                data.push(row);
+            }, function () {
+                db.close();
+                callback(data[0]); 
+            });
+        });
+    },
     insertDaily: function (user_id, timestamp) {
         let db = new sqlite3.Database('./rakuenMain.db');
         let data = [user_id, timestamp];
@@ -85,6 +97,18 @@ module.exports = {
         let data = [guild, channel, message_id];
         let sql = ` INSERT INTO tacos_spawned(guild, channel, message_id)
                        VALUES(?, ?, ?)`;
+        db.run(sql, data, function(err) {
+            if (err) {
+                return console.error(err.message);
+            }
+        });
+        db.close();
+    },
+    insertSpawnableChannelsGuilds: function (guild, channel) {
+        let db = new sqlite3.Database('./rakuenMain.db');
+        let data = [guild, channel];
+        let sql = ` INSERT INTO spawnable_channels_guilds(guild, channel)
+                       VALUES(?, ?)`;
         db.run(sql, data, function(err) {
             if (err) {
                 return console.error(err.message);
@@ -122,6 +146,19 @@ module.exports = {
         let db = new sqlite3.Database('./rakuenMain.db');
         let data = [guild, channel];
         let sql = ` DELETE FROM tacos_spawned
+                     WHERE guild = ? AND channel = ?`;
+        db.run(sql, data, function(err) {
+            if (err) {
+                return console.error(err.message);
+            }
+        });
+        db.close();
+        callback(true);
+    },
+    deleteSpawnableChannelsGuilds: function (guild, channel, callback) {
+        let db = new sqlite3.Database('./rakuenMain.db');
+        let data = [guild, channel];
+        let sql = ` DELETE FROM spawnable_channels_guilds
                      WHERE guild = ? AND channel = ?`;
         db.run(sql, data, function(err) {
             if (err) {

@@ -3,6 +3,7 @@ module.exports = {
     Taco: require('./gambling/taco'),
     Tejina: require('./gambling/tejina'),
 
+    SpawnTaco: require('./helpers/spawnTaco'),
     VerTaco: require('./helpers/verTaco'),
 
     Di: require('./random/di'),
