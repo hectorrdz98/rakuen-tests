@@ -17,7 +17,8 @@ module.exports = {
                 }
                 let count = 1;
                 data.forEach(field => {
-                    let icon = ''
+                    let icon = '';
+                    let tacosRounded = Math.round(field.tacos * 10) / 10;
                     switch (count) {
                         case 1:
                             icon = ':crown: ';
@@ -33,7 +34,7 @@ module.exports = {
                     }
                     top.fields.push({
                         name: icon + count + '.- ' + field.username,
-                        value: field.tacos
+                        value: tacosRounded.toString()
                     });
                     count++;
                 });

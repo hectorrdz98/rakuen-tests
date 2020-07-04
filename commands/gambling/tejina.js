@@ -43,7 +43,7 @@ module.exports = {
                             else if (randomMulti <= 1.9)
                                 imageToUse = tejinaUrl.win;
 
-                            tacoCommands.updateCur(msg.author.id, totalTacos, data.t_tacos);
+                            tacoCommands.updateCur(msg.author.id, totalTacos, data.t_tacos + winTacos);
 
                             let tejina = {
                                 color: 12370112,

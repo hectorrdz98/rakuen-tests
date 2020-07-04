@@ -8,6 +8,8 @@ module.exports = {
             if (!data) {
                 userCommands.insertUser(msg.author.id, msg.author.username, 'Novato', 'Hola! Mucho gusto', msg.author.avatarURL);
             }
+            let tacosRounded = Math.round(data.tacos * 10) / 10;
+            let t_tacosRounded = Math.round(data.t_tacos * 10) / 10;
             let profile = {
                 color: 15844367,
                 title: data.name + ' `' + data.title + '` ',
@@ -16,11 +18,11 @@ module.exports = {
                 fields: [
                     {
                         name: 'Tacos actuales: ',
-                        value: data.tacos + ' :taco:'
+                        value: tacosRounded + ' :taco:'
                     },
                     {
                         name: 'Tacos totales: ',
-                        value: data.t_tacos + ' :taco:'
+                        value: t_tacosRounded + ' :taco:'
                     },
                 ],
                 timestamp: new Date(),
