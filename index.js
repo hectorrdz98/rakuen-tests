@@ -3,7 +3,6 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 const botCommands = require('./commands');
-const { prefix } = require('./prefix.json');
 const tacoCommands = require('./database/tacoCommands.js');
 
 Object.keys(botCommands).map(key => {
@@ -11,6 +10,7 @@ Object.keys(botCommands).map(key => {
 });
 
 const TOKEN = process.env.TOKEN;
+const PREFIX = process.env.PREFIX + ' ';
 const tacoUrl = 'https://media.discordapp.net/attachments/397031754063675402/601989148089253889/coin_discord.png'
 
 bot.login(TOKEN);
@@ -21,7 +21,7 @@ bot.on('ready', () => {
 
 bot.on('message', msg => {
     // Generate taco
-    if (!msg.author.bot && !msg.content.startsWith(prefix) && Math.floor(Math.random() * 100) + 1 <= 3) {
+    if (!msg.author.bot && !msg.content.startsWith(PREFIX) && Math.floor(Math.random() * 100) + 1 <= 3) {
         tacoCommands.getTacoSpawn(msg.guild.id, msg.channel.id, function (data) {
             if (!data) {
                 msg.channel.send({embed: {
@@ -38,9 +38,9 @@ bot.on('message', msg => {
         });
     }
 
-    if (!msg.content.startsWith(prefix) || msg.author.bot) return;
+    if (!msg.content.startsWith(PREFIX) || msg.author.bot) return;
 
-    const args = msg.content.slice(prefix.length).split(' ');
+    const args = msg.content.slice(PREFIX.length).split(' ');
     const command = args.shift();
     console.info(`Called command: ${command}`);
     
