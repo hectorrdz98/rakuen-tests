@@ -1,6 +1,5 @@
 const tacoCommands = require('./../../database/tacoCommands.js');
 const userCommands = require('./../../database/userCommands.js');
-const Discord = require('discord.js');
 
 module.exports = {
     name: 'taco',
