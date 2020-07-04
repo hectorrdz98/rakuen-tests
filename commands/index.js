@@ -1,5 +1,6 @@
 module.exports = {
     Daily: require('./gambling/daily'),
+    Taco: require('./gambling/taco'),
 
     VerTaco: require('./helpers/verTaco'),
 
@@ -10,5 +11,6 @@ module.exports = {
     Cur: require('./statistics/cur'),
     Top: require('./statistics/top'),
 
+    Change: require('./user/change'),
     Profile: require('./user/profile'),
 };

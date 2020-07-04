@@ -43,5 +43,44 @@ module.exports = {
             }
         });
         db.close();
-    }
+    },
+    updateName: function (id, name) {
+        let db = new sqlite3.Database('./rakuenMain.db');
+        let data = [name, id];
+        let sql = ` UPDATE users
+                       SET name = ?
+                     WHERE id = ?`;
+        db.run(sql, data, function(err) {
+            if (err) {
+                return console.error(err.message);
+            }
+        });
+        db.close();
+    },
+    updateDescription: function (id, description) {
+        let db = new sqlite3.Database('./rakuenMain.db');
+        let data = [description, id];
+        let sql = ` UPDATE users
+                       SET description = ?
+                     WHERE id = ?`;
+        db.run(sql, data, function(err) {
+            if (err) {
+                return console.error(err.message);
+            }
+        });
+        db.close();
+    },
+    updateImage: function (id, image) {
+        let db = new sqlite3.Database('./rakuenMain.db');
+        let data = [image, id];
+        let sql = ` UPDATE users
+                       SET image = ?
+                     WHERE id = ?`;
+        db.run(sql, data, function(err) {
+            if (err) {
+                return console.error(err.message);
+            }
+        });
+        db.close();
+    },
 }
