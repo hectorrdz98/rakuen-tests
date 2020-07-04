@@ -1,6 +1,7 @@
 module.exports = {
     Daily: require('./gambling/daily'),
     Taco: require('./gambling/taco'),
+    Tejina: require('./gambling/tejina'),
 
     VerTaco: require('./helpers/verTaco'),
 
