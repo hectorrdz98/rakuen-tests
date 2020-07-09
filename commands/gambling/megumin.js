@@ -39,7 +39,7 @@ module.exports = {
                                 let winTacos = meguminData.start_bet * meguminData.combo;
                                 tacoCommands.getCur(msg.author.id, function (tacoData) {
                                     if (tacoData) {
-                                        tacoCommands.updateCur(msg.author.id, tacoData.tacos, tacoData.t_tacos + winTacos);
+                                        tacoCommands.updateCur(msg.author.id, tacoData.tacos + winTacos, tacoData.t_tacos + winTacos);
                                         msg.channel.send(`¡¡Se han agregado ${winTacos} tacos :taco: <@${msg.author.id}>...!!`);
                                     } else {
                                         msg.channel.send(`Perdón... ocurrió un error <@${msg.author.id}>...`);
