@@ -27,7 +27,7 @@ module.exports = {
     },
     updateMegumin: function (user_id, start_bet, combo) {
         let db = new sqlite3.Database('./rakuenMain.db');
-        let data = [user_id, start_bet, combo];
+        let data = [start_bet, combo, user_id];
         let sql = ` UPDATE megumin_combos
                        SET start_bet = ?, combo = ?
                      WHERE user_id = ?`;
